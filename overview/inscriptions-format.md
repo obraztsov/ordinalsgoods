@@ -4,7 +4,9 @@ All inscriptions used to define protocol-related data will be stored in the Bitc
 
 The actual info related to the protocol will be included in the embedded XML document in the content of the HTML, thus easily readable by machine.
 
-The requirement of the protocol will be to have a very specific HTML format, maintaining the safety of the Ordinals' recursion and information security (protection of unwanted script injections in the user-generated content). We allow HTML documents to contain only one tag in the `body` that is either `img`, or `iframe`, and no executable scripts at all. It is also prohibited to define any event listeners or to include any stylesheet inscriptions not from the whitelist.
+The requirement of the protocol will be to have a very specific HTML format, maintaining the safety of the Ordinals' recursion and information security (protection of unwanted script injections in the user-generated content). At first, we require an HTML document to be a valid XML document. HTML inscriptions that are not validated as XML and can't be parsed as XML are not considered for validation and wouldn't be included into the state.
+
+We allow HTML documents to contain only one tag in the `body` that is either `img`, or `iframe`, and no executable scripts at all. It is also prohibited to define any event listeners or to include any stylesheet inscriptions not from the whitelist.
 
 For ease of indexing, we also require to have all tags and attribute names in lowercase. All inscriptions not meeting these criteria will be considered invalid by the protocol and not included in indexed collections.
 
