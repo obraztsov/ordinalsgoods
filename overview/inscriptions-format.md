@@ -14,4 +14,4 @@ For ease of indexing, we also require to have all tags and attribute names in lo
 The complete messages protocol is unambiguously defined by XML schema, which is itself inscribed on ordinals. The inscription of the XML schema acts as an identifier of the version of the protocol and, configured in the validator instance, as a qualifier to filter the stream of inscriptions for validation.
 {% endhint %}
 
-The suggested recursive HTML inscriptions format is easily extensible. Documents can contain additional XML scripts besides Ordinals Goods protocol data. Nested recursive HTML inscriptions can dynamically load documents and easily access the content and protocol data.
+The suggested recursive HTML inscriptions format is easily extensible. Documents can contain additional XML scripts besides Ordinals:goods protocol data. Nested recursive HTML inscriptions can dynamically load documents and easily access the content and protocol data.
