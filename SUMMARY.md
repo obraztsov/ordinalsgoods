@@ -1,6 +1,6 @@
 # Table of contents
 
-* [☀ Welcome to Ordinals(goods)](README.md)
+* [☀ Welcome to Ordinals:goods](README.md)
 
 ## Overview
 
