@@ -58,11 +58,13 @@ Since subscriptions can be used as a means of lightweight fundraising for busine
 
 Item inscriptions will be the most circulating in the Ordinals(goods) protocol and the ones providing the direct link to the goods in the physical world. All item inscriptions will have a product inscription as the parent inscription, and through it - a reference to the DAO root inscription, therefore unambiguously defining the goods. Suppose the item inscription is created in the scope of the subscription. In that case, it will also contain the reference to the subscription inscription (inscription id) provided in the item tag in the metadata.
 
-Item inscription can have (through an optional field) a quantity parameter, enabling to represent a set of identical items for shipments. If for example, a subscription holder has some unclaimed balance of items, he can mint a single item inscription with the whole balance, and redeem all items at once.
+Item inscription can have (through an optional field) a quantity parameter, enabling to representation of a set of identical items for shipments. If for example, a subscription holder has some unclaimed balance of items, he can mint a single item inscription with the whole balance, and redeem all items at once.
 
-The cornerstone of the protocol is the validation rules for goods inscriptions, enabling to track of only authentic goods inscriptions, supporting marketplaces collections listings, organize physical goods redemptions. To process this task, the validator-indexer will process all new goods inscriptions, and employ complex logic to decide whether or not to include the inscription in a collection and further track as valid.
+The cornerstone of the protocol is the validation rules for goods inscriptions, enabling tracking of only authentic goods inscriptions, supporting marketplace collections listings, and organizing physical goods redemptions. To process this task, the validator-indexer will process all new goods inscriptions, and employ complex logic to decide whether or not to include the inscription in a collection and further track as valid.
 
-The first check will consider the “genesis owner” of the inscription: an address, receiving the sat with the inscription in the inscriptions' genesis transaction. The genesis owner must be equal to the address of the current holder of the referenced subscription. The second potential way of minting valid items - is for the DAO itself, to inscribe an item on the satoshi stored in the DAO address.
+The first check will consider the “genesis owner” of the inscription: an address, receiving the sat with the inscription in the inscriptions' genesis transaction. The genesis owner must be equal to the address of the current holder of the referenced subscription. In addition, the indexer will check the previous owner of the satoshi on which the item is inscribed, to prevent unauthorized item mints even without ownership violation.
+
+Alternatively, the subscription holder can use his subscription inscription as a parent inscription for an item leveraging Ordinals Provenance. The third potential way of minting valid items is for the DAO, to inscribe an item on the satoshi owned by the DAO address.&#x20;
 
 If the goods inscription is created in the scope of the subscription, the validator will run an unambiguous test to determine the subscription holder’s eligibility to inscribe the goods by quantity (the whole logic of the validation was described in the paragraph about subscription inscriptions).
 
@@ -78,11 +80,11 @@ Goods inscription will be freely traded on PSBT marketplaces and exchanges, pote
 
 <summary>Certificate inscription</summary>
 
-Certificate inscriptions contain a key-value pair, along with the type field setting the type of the certificate. Certificate inscriptions can be inscribed both by goods inscription holders and by the DAO. However, item or subscription holders can inscribe only certificates of the type "message".
+Certificate inscriptions contain a key-value pair, along with the type field setting the type of the certificate. Certificate inscriptions can be inscribed both by goods inscription holders and by the DAO. However, item or subscription holders can inscribe only certificates of the type "message". Indexer applies logic similar to validating subscription items, to the validation of messages issued by holders.
 
 The protocol doesn't limit the set of types to enable extensibility. A few types are reserved, such as "message", "certificate", and "bearer". Messages are intended to carry important data that will be appended to the goods, such as redemptions and redemption statuses, and maintenance/warranty events. Also, messages can be used in applications extending Ordinals Goods protocol, in PSBT contracts for supply chain management, verifiable customer reviews for products, etc.
 
-Inscriptions with the type "certificate" only can be issued by the business (DAO) and thus are intended for important status updates, such as redemption, and business integrated supply chain events.
+Inscriptions with the types "certificate" and "bearer" only can be issued by the business (DAO) and thus are intended for important status updates, such as redemption, business-integrated supply chain events, or various tickets and loyalty coupons.
 
 Once inscriptions with message and certificate types are inscribed and considered to be valid by the protocol, information from inscriptions will be permanently bound to the item inscription. Satoshi contained in the certificate inscriptions can be recycled, or the owner can decide to hold them for future easy proof without relying on history records.
 

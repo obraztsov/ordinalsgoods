@@ -12,9 +12,13 @@ Every individual product package will also be represented as an inscription, and
 
 The validator-indexer will consider product instance inscriptions valid if:
 
-1. inscribed (sent in the genesis tx) to the address of the valid subscription holder and have a valid Ordinal Recursion reference to the correct subscription inscription;
+1. inscribed (sent in the genesis tx) on the satoshi owned by a subscription holder, sent to the address of the associated subscription holder, and have a valid Ordinal Recursion reference to the correct subscription inscription;
 2. at the time (block height) of the inscription tx’s confirmation, and considering the history of mints for the specified subscription (sorting by inscription globally unique number), there is an unclaimed balance of the product for the specified subscription.
 
-Protocol also enables every DAO to issue (inscribe) product instance inscriptions not tied to a subscription (i.e. to simply tokenize goods for distribution on the marketplaces). In that case, the subscription reference in the inscription content will be empty, and the validator will consider these inscriptions valid if they were inscribed on the satoshi sent from the address of the DAO (in the genesis tx).&#x20;
+{% hint style="info" %}
+To support popular wallets and marketplaces that are separating addresses with Ordinals with BTC addresses, Ordinals:goods protocol supports an alternative way of verifying user-inscribed protocol messages authenticity via Orindlas Provenance (child inscriptions).
+{% endhint %}
+
+Protocol also enables every DAO to issue (inscribe) product instance inscriptions not tied to a subscription (i.e. to simply tokenize goods for distribution on the marketplaces). In that case, the subscription reference in the inscription content will be empty, and the validator will consider these inscriptions valid if they were inscribed on the satoshi sent from the address of the DAO.&#x20;
 
 The goods inscriptions (product instances) also will have a reference to an external product description inscription, together with a subscription inscription, to simplify marketplace listings and goods filtering. The protocol enables one goods inscription to carry several identical items of physical product, to optimize usage of Bitcoin transactions.
